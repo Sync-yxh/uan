@@ -3,7 +3,7 @@
 
 #include "uan-class.h"
 
-int FindRouting(char* next);
+int FindRouting(char& next);
 bool Route_DataSend(RouteData data);
 void* Route_SendControlThread(void* ptr);
 void* Route_RecvControlThread(void* ptr);

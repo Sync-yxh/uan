@@ -10,17 +10,17 @@
 
 using namespace std;
 
-int FindRouting(char* next) 
+int FindRouting(char& next)
 {
 	int FindResult = 0;
-	next = 255;
+	next = char(255);
 	return FindResult;
 }
 
 bool Route_DataSend(RouteData data)
 {
 	char nextID;
-	if(!FindRouting(&nextID)){
+	if(!FindRouting(nextID)){
 		pthread_mutex_lock(&mut);
 		RouteSendBuff.pop_front();
 		RouteWaitSend--;
