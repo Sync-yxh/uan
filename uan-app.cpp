@@ -28,7 +28,21 @@ void SendAppData
 
 void SendAppState
 {
-	
+	StatePkt pkt;
+	pkt.flag = 1
+	Rdata.flag = 1;
+	Rdata.seqNum = dataSeqNum;
+	Rdata.srcID = m_ID;
+	AppData oridata;
+	oridata.Datalenth = 5;
+	for(int i=0;i<oridata.Datalenth;i++){
+		oridata.Data[i] = i+1
+	}
+	Rdata.data = oridata;
+	pthread_mutex_lock(&mut);
+	RouteWaitSend++;
+	RouteSendBuff.push_back( Rdata );
+	pthread_mutex_unlock(&mut);
 }
 
 void ScheduleData()
