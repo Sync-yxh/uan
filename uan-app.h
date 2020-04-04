@@ -6,7 +6,7 @@
 void ScheduleData();
 void ScheduleState();
 
-void SendAppState(int nSignal);
-void SendAppData(int nSignal);
+void SendAppState();
+void SendAppData();
 
 #endif /* UAN_APP_H_ */

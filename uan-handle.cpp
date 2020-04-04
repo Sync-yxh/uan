@@ -87,6 +87,6 @@ void InitSys()
 	ToMAC(pkt);
 	stateSeqNum ++;
 
-	ScheduleState();
-	ScheduleData();
+	// ScheduleState();
+	// ScheduleData();
 }

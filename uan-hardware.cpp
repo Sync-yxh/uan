@@ -158,12 +158,31 @@ void serialport1_Recv_monitorPthread_create()
 	pthread_create(&Pthread_2, NULL, serialport1_Recv_monitorPthread, NULL);
 }
 
+void PrintTime(unsigned int time)
+{
+	int second = time % 60;
+	int minite = time / 60;
+	int hour = minite / 60;
+	minite = minite % 60;
+	cout << "Time: "<<hour<<" hour "<<minite<<" min "<<second<<" sec "<<endl;
+}
+
 void timer_counter(int nSignal)	//定时器计数函数
 {
 	pthread_mutex_lock(&mut);
 	SysTimeCnt++;
 	pthread_mutex_unlock(&mut);
-	cout<<"time： "<<SysTimeCnt<<endl;
+	PrintTime(SysTimeCnt);
+
+	if(SysTimeCnt % 2 == 0){
+		SendAppData();
+	}
+	if(SysTimeCnt % 300 == 0){
+		SendAppState();
+	}
+	if(SysTimeCnt >= 60000){
+		SysTimeCnt = 0;
+	}
 }
 
 void TimerInit()

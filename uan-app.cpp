@@ -13,7 +13,7 @@
 #include "uan-route.h"
 #include "uan-handle.h"
 
-void SendAppData(int nSignal)
+void SendAppData()
 {
 	RouteData Rdata;
 	Rdata.flag = 3;
@@ -32,7 +32,7 @@ void SendAppData(int nSignal)
 	pthread_mutex_unlock(&mut);
 }
 
-void SendAppState(int nSignal)
+void SendAppState()
 {
 	dataSeqNum = 0;
 	StatePkt pkt;
@@ -51,26 +51,26 @@ void SendAppState(int nSignal)
 	pthread_mutex_unlock(&mut);
 }
 
-void ScheduleData()
-{
-	struct itimerval tick;
-	signal(SIGALRM, SendAppData);				//接收到SIGALRM信号就计数
-	memset(&tick, 0, sizeof(tick));             //tick清零
-	tick.it_value.tv_sec = 1;                   //1秒后启动定时器
-	tick.it_value.tv_usec = 0;
-	tick.it_interval.tv_sec = 2;                //每隔2s发送一次SIGALRM信号
-    tick.it_interval.tv_usec = 0;
-	setitimer(ITIMER_REAL, &tick, NULL);        //ITIMER_REAL : 以系统真实的时间来计算，它送出SIGALRM信号
-}
+// void ScheduleData()
+// {
+// 	struct itimerval tick;
+// 	signal(SIGALRM, SendAppData);				//接收到SIGALRM信号就计数
+// 	memset(&tick, 0, sizeof(tick));             //tick清零
+// 	tick.it_value.tv_sec = 1;                   //1秒后启动定时器
+// 	tick.it_value.tv_usec = 0;
+// 	tick.it_interval.tv_sec = 2;                //每隔2s发送一次SIGALRM信号
+//     tick.it_interval.tv_usec = 0;
+// 	setitimer(ITIMER_REAL, &tick, NULL);        //ITIMER_REAL : 以系统真实的时间来计算，它送出SIGALRM信号
+// }
 
-void ScheduleState()
-{
-	struct itimerval tick;
-	signal(SIGALRM, SendAppState);				//接收到SIGALRM信号就计数
-	memset(&tick, 0, sizeof(tick));             //tick清零
-	tick.it_value.tv_sec = 300;                   //5s后启动定时器
-	tick.it_value.tv_usec = 0;
-	tick.it_interval.tv_sec = 300;                //每隔5m发送一次SIGALRM信号
-    tick.it_interval.tv_usec = 0;
-	setitimer(ITIMER_REAL, &tick, NULL);        //ITIMER_REAL : 以系统真实的时间来计算，它送出SIGALRM信号
-}
+// void ScheduleState()
+// {
+// 	struct itimerval tick;
+// 	signal(SIGALRM, SendAppState);				//接收到SIGALRM信号就计数
+// 	memset(&tick, 0, sizeof(tick));             //tick清零
+// 	tick.it_value.tv_sec = 300;                   //5s后启动定时器
+// 	tick.it_value.tv_usec = 0;
+// 	tick.it_interval.tv_sec = 300;                //每隔5m发送一次SIGALRM信号
+//     tick.it_interval.tv_usec = 0;
+// 	setitimer(ITIMER_REAL, &tick, NULL);        //ITIMER_REAL : 以系统真实的时间来计算，它送出SIGALRM信号
+// }

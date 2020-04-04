@@ -10,14 +10,14 @@ using namespace std;
 
 int main() {
 	// serial_fd1 = Serialport1_init();
-	TimerInit();
 	serialport1_Recv_monitorPthread_create();
 	serialport1_Send_monitorPthread_create();
 	MAC_SendControlThread_create();
 	MAC_RecvControlThread_create();
 	Route_SendControlThread_create();
 	Route_RecvControlThread_create();
-
+	
+	TimerInit();
 	InitSys();
 
 	while(true)
