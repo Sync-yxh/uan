@@ -5,6 +5,7 @@
 #include <list>
 #include <map>
 #include <string.h>
+#include <vector>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ using namespace std;
 #define RecordCNT   1
 #define EtEDelay 20
 
-typedef unsigned short uint16
+typedef unsigned short uint16;
 
 extern pthread_mutex_t mut;  // 互斥锁
 extern char m_ID;       //自身硬件地址
@@ -35,7 +36,7 @@ extern int RouteWaitRecv;     //路由等待接收标志
 extern vector<MACResult> MACResultArray;         //MAC发送结果记录数组
 
 extern list< list<char> > MACRecvBuff;               //MAC接收缓存
-extern list<MACData> MACSendBuff;                  //MAC发送缓存
+extern list<DataPkt> MACSendBuff;                  //MAC发送缓存
 extern list<RouteData> RouteRecvBuff;              //路由接收缓存
 extern list<RouteData> RouteSendBuff;              //路由发送缓存
 extern list<AppData> DataBuff;

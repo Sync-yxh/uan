@@ -120,7 +120,7 @@ void *serialport1_Recv_monitorPthread(void *ptr)
 			string readstr;
 			cin >> readstr;
 			readlen = readstr.size();
-			strcpy(readbuff,readstr);
+			strcpy(readbuff,readstr.c_str());
 			if(readlen > 0)
 			{
 				if(!strcmp(readbuff,"cmd1")){
@@ -199,60 +199,53 @@ int ListenChanel()
 	}
 }
 
-void WaitDelay(int waittime)
+void WaitDelay(unsigned int waittime)
 {
-	int starttime = SysTimeCnt;
+	unsigned int starttime = SysTimeCnt;
 	while(SysTimeCnt - starttime < waittime){};
 }
 
-int CountBackoffTime(int backofftime)
+unsigned int CountBackoffTime(int backofftime)
 {
-	if(backofftime < Maxbackofftime)
-	{
-		return (pow(2,random(backofftime - 1)) * EtEDelay);
-	}
-	else
-	{
-		return false;
-	}
+	return (unsigned int)(pow(2,random(backofftime - 1)) * EtEDelay);
 }
 
-void PrintTable()
-{
-	cout<<"Node ID        Hop           Valid           Path "<<endl;
-	for(auto iter = m_RouTable.begin();iter!=m_RouTable.end();iter++)
-	{
-		cout<<(int)iter->Des_ID<<"             "<<(int)iter->hop<<"             ";
-		cout<<iter->valid<<"             ";
-		for(int i = 0;i<iter->hop;i++)
-			cout<<(int)iter->Point[i]<<",";
-		cout<<endl;
-	}
-}
+//void PrintTable()
+//{
+//	cout<<"Node ID        Hop           Valid           Path "<<endl;
+//	for(auto iter = m_RouTable.begin();iter!=m_RouTable.end();iter++)
+//	{
+//		cout<<(int)iter->Des_ID<<"             "<<(int)iter->hop<<"             ";
+//		cout<<iter->valid<<"             ";
+//		for(int i = 0;i<iter->hop;i++)
+//			cout<<(int)iter->Point[i]<<",";
+//		cout<<endl;
+//	}
+//}
 
-void SendPacket()
-{
-	AppData ad;
-	ad.Datalenth = 2;
-	ad.Data[0] = 1;
-	ad.Data[1] = 1;
-	AppSend(8,ad);
-}
+//void SendPacket()
+//{
+//	AppData ad;
+//	ad.Datalenth = 2;
+//	ad.Data[0] = 1;
+//	ad.Data[1] = 1;
+//	AppSend(8,ad);
+//}
 
-void RecvPacket()
-{
-	AppData ad;
-	while(1)
-	{
-		bool notempty = AppRecv(&ad);
-		if(notempty)
-		{
-			cout<<"recv packet: ";
-			for(int i=0;i<ad.Datalenth;i++)
-				cout<<(int)ad.Data[i]<<" ";
-			cout<<endl;
-		}
-		else
-			break;
-	}
-}
+//void RecvPacket()
+//{
+//	AppData ad;
+//	while(1)
+//	{
+//		bool notempty = AppRecv(&ad);
+//		if(notempty)
+//		{
+//			cout<<"recv packet: ";
+//			for(int i=0;i<ad.Datalenth;i++)
+//				cout<<(int)ad.Data[i]<<" ";
+//			cout<<endl;
+//		}
+//		else
+//			break;
+//	}
+//}

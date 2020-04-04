@@ -17,7 +17,7 @@ int RouteWaitRecv = 0;     //路由等待接收标志
 vector<MACResult> MACResultArray;         //MAC发送结果记录数组
 
 list< list<char> > MACRecvBuff;               //MAC接收缓存
-list<MACData> MACSendBuff;                  //MAC发送缓存
+list<DataPkt> MACSendBuff;                  //MAC发送缓存
 list<RouteData> RouteRecvBuff;              //路由接收缓存
 list<RouteData> RouteSendBuff;              //路由发送缓存
 list<AppData> DataBuff;

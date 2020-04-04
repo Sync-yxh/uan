@@ -2,13 +2,18 @@
 #include <fstream>
 #include <list>
 #include <string.h>
+#include <signal.h>
+#include <time.h>
+#include <sys/time.h>
+
 
 #include "uan-variable.h"
 #include "uan-class.h"
 #include "uan-hardware.h"
 #include "uan-route.h"
+#include "uan-handle.h"
 
-void SendAppData()
+void SendAppData(int nSignal)
 {
 	RouteData Rdata;
 	Rdata.flag = 3;
@@ -18,7 +23,7 @@ void SendAppData()
 	AppData oridata;
 	oridata.Datalenth = 5;
 	for(int i=0;i<oridata.Datalenth;i++){
-		oridata.Data[i] = i+1
+		oridata.Data[i] = i+1;
 	}
 	Rdata.data = oridata;
 	pthread_mutex_lock(&mut);
@@ -27,7 +32,7 @@ void SendAppData()
 	pthread_mutex_unlock(&mut);
 }
 
-void SendAppState()
+void SendAppState(int nSignal)
 {
 	dataSeqNum = 0;
 	StatePkt pkt;
@@ -37,7 +42,7 @@ void SendAppState()
 	pkt.bandwidth = MACWaitSend;
 	pkt.connect = ChildIDBuff.size();
 	pkt.Depth = m_Depth;
-	ToMac(pkt);
+	ToMAC(pkt);
 	ChildIDBuff.clear();
 	ParentIDBuff.clear();
 	pthread_mutex_lock(&mut);

@@ -62,6 +62,6 @@ public:
 	char relayID;
 	char dstID;
 	AppData data;
-}
+};
 
 #endif /* UAN_CLASS_H_ */

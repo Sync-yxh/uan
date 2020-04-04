@@ -22,7 +22,6 @@ int main() {
 
 	while(true)
 	{
-		pause();
 	}
 	return 0;
 }

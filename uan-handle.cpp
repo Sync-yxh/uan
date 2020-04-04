@@ -5,6 +5,7 @@
 #include "uan-variable.h"
 #include "uan-class.h"
 #include "uan-app.h"
+#include "uan-mac.h"
 
 using namespace std;
 
@@ -30,10 +31,10 @@ void HandleRou(char input[])
 		initpkt.Depth = uint16(input[3] << 8 & input[4]);
 
 		if(m_Depth < initpkt.Depth){
-			ChildIDBuff.push_back(initpkt.srcID)
+			ChildIDBuff.push_back(initpkt.srcID);
 		}
 		else{
-			ParentIDBuff.push_back(initpkt.srcID)
+			ParentIDBuff.push_back(initpkt.srcID);
 		}
 	}break;
 	case 2:                //状态报文
@@ -44,11 +45,11 @@ void HandleRou(char input[])
 		statePkt.bandwidth = input[3];
 		statePkt.connect = input[4];
 		statePkt.Depth = uint16(input[5] << 8 & input[6]);
-		if(m_Depth < initpkt.Depth){
-			ChildIDBuff.push_back(initpkt.srcID)
+		if(m_Depth < statePkt.Depth){
+			ChildIDBuff.push_back(statePkt.srcID);
 		}
 		else{
-			ParentIDBuff.push_back(initpkt.srcID)
+			ParentIDBuff.push_back(statePkt.srcID);
 		}
 	}break;
 	default:
@@ -110,7 +111,7 @@ void InitSys()
 	pkt.srcID = m_ID;
 	pkt.Depth = m_Depth;
 
-	ToMAC(tempIB);
+	ToMAC(pkt);
 	stateSeqNum ++;
 
 	ScheduleState();

@@ -21,11 +21,9 @@ void MAC_DataRecv(char input[])
 	dataPkt.relayID = input[3];
 	dataPkt.dstID = input[4];
 	dataPkt.data.Datalenth = input[5];
-	sizecnt = 6;
 	for (int i = 0; i < dataPkt.data.Datalenth; i++)
 	{
-		arr[6 + i] = dataPkt.data.Data[i];
-		sizecnt ++;
+		dataPkt.data.Data[i] = input[6 + i];
 	}
 	if(dataPkt.flag == 3)
 	{
@@ -86,7 +84,7 @@ bool MAC_DataSend(DataPkt dataPkt)
 {
 	char *arr = new char[108];
 	int sizecnt = 0;
-	memset(input,0,108*sizeof(char));
+	memset(arr,0,108*sizeof(char));
 	bool DataSendResult = false;
 	arr[0] = dataPkt.flag;
 	arr[1] = dataPkt.seqNum;
@@ -97,7 +95,7 @@ bool MAC_DataSend(DataPkt dataPkt)
 	sizecnt = 6;
 	for (int i = 0; i < dataPkt.data.Datalenth; i++)
 	{
-		arr[6 + i] = Mac_Data.mAD.Data[i];
+		arr[6 + i] = dataPkt.data.Data[i];
 		sizecnt ++;
 	}
 	PortSend(arr,sizecnt);
@@ -110,7 +108,7 @@ bool MAC_DataSend(InitPkt initPkt)
 {
 	char *arr = new char[108];
 	int sizecnt = 0;
-	memset(input,0,108*sizeof(char));
+	memset(arr,0,108*sizeof(char));
 	bool SendResult = false;
 	arr[0] = initPkt.flag;
 	arr[1] = initPkt.seqNum;
@@ -128,7 +126,7 @@ bool MAC_DataSend(StatePkt statePkt)
 {
 	char *arr = new char[108];
 	int sizecnt = 0;
-	memset(input,0,108*sizeof(char));
+	memset(arr,0,108*sizeof(char));
 	bool SendResult = false;
 	arr[0] = statePkt.flag;
 	arr[1] = statePkt.seqNum;
@@ -174,9 +172,9 @@ void* MAC_SendControlThread(void *ptr)     //MAC层发送控制线程
 			MR.result = result;
 
 			//MACResultArray记录
-			MACResultArray.push_bakc(MR);
+			MACResultArray.push_back(MR);
 
-			if (MACResultCount.size() == RecordCNT)
+			if (MACResultArray.size() == RecordCNT)
 			{
 				fstream outfile;
 				outfile.open("MACResult.txt", ios::in | ios::out | ios::app);

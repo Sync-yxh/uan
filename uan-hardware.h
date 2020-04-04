@@ -10,8 +10,8 @@ void timer_counter(int nSignal);
 void TimerInit();
 void PortSend(char* send,int sizecnt);
 int ListenChanel();
-void WaitDelay(int waittime);
-int CountBackoffTime(int backofftime);
+void WaitDelay(unsigned int waittime);
+unsigned int CountBackoffTime(int backofftime);
 
 
 #endif /* UAN_HARDWARE_H_ */
