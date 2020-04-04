@@ -83,7 +83,7 @@ void *serialport1_Send_monitorPthread(void *ptr)
 	{
 		if(SysPortState == SendState)
 		{
-			tcflush(serial_fd1, TCOFLUSH);
+			// tcflush(serial_fd1, TCOFLUSH);
 			/**为了测试时串口端显示问题，添加换行，在真正代码中，需要去掉**/
 			sendbuff[sendlen] = '\n';
 			// writeresult = write(serial_fd1,sendbuff,(sendlen+1));
@@ -110,7 +110,7 @@ void serialport1_Send_monitorPthread_create()
 
 void *serialport1_Recv_monitorPthread(void *ptr)
 {
-	tcflush(serial_fd1, TCIFLUSH);
+	// tcflush(serial_fd1, TCIFLUSH);
 	while(1)
 	{
 		if(SysPortState == RecvState)

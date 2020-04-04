@@ -9,7 +9,7 @@
 using namespace std;
 
 int main() {
-	serial_fd1 = Serialport1_init();
+	// serial_fd1 = Serialport1_init();
 	TimerInit();
 	serialport1_Recv_monitorPthread_create();
 	serialport1_Send_monitorPthread_create();
