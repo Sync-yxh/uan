@@ -4,6 +4,7 @@
 #include <string.h>
 #include "uan-variable.h"
 #include "uan-class.h"
+#include "uan-app.h"
 
 using namespace std;
 
@@ -101,7 +102,7 @@ void SetFlie()
 	outfile.close();
 }
 
-void SetupAddr()
+void InitSys()
 {
 	SetFlie();
 	InitPkt pkt;
@@ -111,4 +112,7 @@ void SetupAddr()
 
 	ToMAC(tempIB);
 	stateSeqNum ++;
+
+	ScheduleState();
+	ScheduleData();
 }

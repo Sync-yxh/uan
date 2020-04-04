@@ -3,9 +3,10 @@
 
 #include "uan-class.h"
 
-void AppSend(char Des_ID,AppData inputAD);
-bool AppRecv(AppData* outputAD);
+void ScheduleData();
+void ScheduleState();
 
-
+void SendAppState();
+void SendAppData()
 
 #endif /* UAN_APP_H_ */

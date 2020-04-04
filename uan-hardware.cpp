@@ -86,7 +86,8 @@ void *serialport1_Send_monitorPthread(void *ptr)
 			tcflush(serial_fd1, TCOFLUSH);
 			/**为了测试时串口端显示问题，添加换行，在真正代码中，需要去掉**/
 			sendbuff[sendlen] = '\n';
-			writeresult = write(serial_fd1,sendbuff,(sendlen+1));
+			// writeresult = write(serial_fd1,sendbuff,(sendlen+1));
+			writeresult = true;
 			if(writeresult > 0)
 			{
 				cout<<"send success:  ";
@@ -115,15 +116,22 @@ void *serialport1_Recv_monitorPthread(void *ptr)
 		if(SysPortState == RecvState)
 		{
 			memset(readbuff,0,sizeof(char)*MAXLength);
-			readlen = read(serial_fd1,readbuff,MAXLength);
+			// readlen = read(serial_fd1,readbuff,MAXLength);
+			string readstr;
+			cin >> readstr;
+			readlen = readstr.size();
+			strcpy(readbuff,readstr);
 			if(readlen > 0)
 			{
-				if(!strcmp(readbuff,"cmd1"))
-					PrintTable();
-				else if(!strcmp(readbuff,"cmd2"))
-					SendPacket();
-				else if(!strcmp(readbuff,"cmd3"))
-					RecvPacket();
+				if(!strcmp(readbuff,"cmd1")){
+					// PrintTable();
+				}
+				else if(!strcmp(readbuff,"cmd2")){
+					// SendPacket();
+				}
+				else if(!strcmp(readbuff,"cmd3")){
+					// RecvPacket();
+				}
 				else
 				{
 					cout<<"recv success:  ";

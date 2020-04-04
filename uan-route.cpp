@@ -76,7 +76,7 @@ RouteData Route_Package(AppData ad)
 {
 	RouteData rd;
 
-	rd.flag = 1;
+	rd.flag = 3;
 	rd.seqNum = dataSeqNum;
 	rd.srcID = m_ID;
 	rd.data = ad;

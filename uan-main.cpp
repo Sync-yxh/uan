@@ -18,7 +18,7 @@ int main() {
 	Route_SendControlThread_create();
 	Route_RecvControlThread_create();
 
-	SetupAddr();
+	InitSys();
 
 	while(true)
 	{
