@@ -13,6 +13,7 @@ using namespace std;
 int FindRouting(char* next) 
 {
 	int FindResult = 0;
+	next = 255;
 	return FindResult;
 }
 

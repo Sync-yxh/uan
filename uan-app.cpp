@@ -47,7 +47,7 @@ void SendAppState(int nSignal)
 	ParentIDBuff.clear();
 	pthread_mutex_lock(&mut);
 	MACWaitSend = 0;
-	RouteSendBuff.clear();
+	MACSendBuff.clear();
 	pthread_mutex_unlock(&mut);
 }
 

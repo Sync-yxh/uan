@@ -74,33 +74,6 @@ void SetFlie()
 	outfile.flags(ios::right);
 	outfile<< "Result" << endl;
 	outfile.close();
-
-	outfile.open("RouteResult.txt", ios::in | ios::out | ios::app);
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile << "flag";
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile << "Time";
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile<< "Seq ";
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile<< "Result" << endl;
-	outfile.close();
-
-	outfile.open("BundleResult.txt", ios::in | ios::out | ios::app);
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile << "Time";
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile<< "Seq ";
-	outfile.width(6);
-	outfile.flags(ios::right);
-	outfile<< "Result" << endl;
-	outfile.close();
 }
 
 void InitSys()
