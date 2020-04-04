@@ -92,7 +92,7 @@ void *serialport1_Send_monitorPthread(void *ptr)
 			{
 				cout<<"send success:  ";
 				for(int i=0;i<sendlen;i++)
-					cout<<(int)sendbuff[i]<<" ";
+					cout<<(unsigned int)sendbuff[i]<<" ";
 				cout<<endl;
 			}
 			SysPortState = RecvState;
@@ -136,7 +136,7 @@ void *serialport1_Recv_monitorPthread(void *ptr)
 				{
 					cout<<"recv success:  ";
 					for(int i=0;i<readlen;i++)
-						cout<<(int)readbuff[i]<<" ";
+						cout<<(unsigned int)readbuff[i]<<" ";
 					cout<<endl;
 
 					list<char> macrecv(readbuff,readbuff+readlen);

@@ -114,7 +114,7 @@ bool MAC_DataSend(InitPkt initPkt)
 	arr[1] = initPkt.seqNum;
 	arr[2] = initPkt.srcID;
 	arr[3] = (char)(initPkt.Depth >> 8);
-	arr[4] = (char)(initPkt.Depth & 0x0F);
+	arr[4] = (char)(initPkt.Depth & 0x00FF);
 	sizecnt = 5;
 	PortSend(arr,sizecnt);
 	delete[]arr;
