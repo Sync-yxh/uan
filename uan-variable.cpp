@@ -26,6 +26,8 @@ map<State, double> QTable;               //Q值表
 vector<char> ParentIDBuff;
 vector<char> ChildIDBuff;
 
+vector<MACResult> MACResultArray;         //MAC发送结果记录数组
+
 int SysPortState = RecvState;     //  系统状态
 char readbuff[MAXLength];
 char sendbuff[MAXLength];

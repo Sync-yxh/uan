@@ -2,6 +2,7 @@
 #include <fstream>
 #include <list>
 #include <string.h>
+#include <limits.h>
 
 #include "uan-variable.h"
 #include "uan-class.h"
@@ -59,19 +60,19 @@ void UpdataQ()
     	double oldQ = QTable[data.state];
     	double maxNextQ = CalcMaxNextQ(data.state,data.stateNextVec);
 
-    	double newQ = oldQ + alpha*(data.reward + gamma*maxNextQ - oldQ);
+    	double newQ = oldQ + 0.7*(data.reward + 0.1*maxNextQ - oldQ);
     	QTable[data.state] = newQ;
 
-		if(QstateVec.size()==1){
-			action = QstateVec[0].id;
+		if(QstateVector.size()==1){
+			action = QstateVector[0].id;
 		}
-		else if(QstateVec.size()==0){
+		else if(QstateVector.size()==0){
 			action = char(255);
 		}
 		else{
 			double maxQ1 = INT_MIN;
 			State maxS1;
-			for(std::vector<State>::iterator iter = QstateVec.begin(); iter != QstateVec.end(); iter++)
+			for(vector<State>::iterator iter = QstateVector.begin(); iter != QstateVector.end(); iter++)
 			{
 				State one = *iter;
 				if(QTable.find(one) != QTable.end()){

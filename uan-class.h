@@ -1,6 +1,9 @@
 #ifndef UAN_CLASS_H_
 #define UAN_CLASS_H_
 
+#include <vector>
+
+using namespace std;
 
 //应用数据类型
 class AppData
@@ -36,7 +39,7 @@ class InitPkt
 public:
 	char flag = 1;
 	char seqNum;
-	char srcID = m_ID;
+	char srcID;
 	unsigned short Depth;
 
 };
@@ -47,7 +50,7 @@ class StatePkt
 public:
 	char flag = 2;
 	char seqNum;
-	char srcID = m_ID;
+	char srcID;
 	char bandwidth;
 	char connect;
 	unsigned short Depth;
@@ -72,14 +75,14 @@ public:
     int bandwidth;
 
 	bool operator < ( const State &s ) const; 
-}
+};
 
 class Step
 {
 public:
     State state;
     bool action;
-    std::vector<State> stateNextVec;
+    vector<State> stateNextVec;
     double reward;
 };
 
