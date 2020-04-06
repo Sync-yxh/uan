@@ -10,12 +10,28 @@ using namespace std;
 
 int main() {
 	// serial_fd1 = Serialport1_init();
+	State x;
+	x.id = 4;
+	x.connect = 2;
+	x.bandwidth = 0;
+	Qtable[x] = 0.5;
+	x.id = 4;
+	x.connect = 1;
+	x.bandwidth = 0;
+	Qtable[x] = 1.0;
+	x.id = 5;
+	x.connect = 2;
+	x.bandwidth = 0;
+	Qtable[x] = 0.8;
+	QLStage = 3;
+
 	serialport1_Recv_monitorPthread_create();
 	serialport1_Send_monitorPthread_create();
 	MAC_SendControlThread_create();
 	MAC_RecvControlThread_create();
 	Route_SendControlThread_create();
 	Route_RecvControlThread_create();
+
 
 	TimerInit();
 	InitSys();

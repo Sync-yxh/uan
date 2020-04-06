@@ -64,18 +64,18 @@ void UpdataQ()
 	}
 	else if(QLStage == 3)
 	{
-		Step data;
-		data.state = OldState;
-		data.reward = 1;
-		data.stateNextVec = QstateVector;
-		if(QTable.find(data.state) == QTable.end()){
-    		QTable[data.state] = 0;
-    	}
-    	double oldQ = QTable[data.state];
-    	double maxNextQ = CalcMaxNextQ(data.state,data.stateNextVec);
+		// Step data;
+		// data.state = OldState;
+		// data.reward = 1;
+		// data.stateNextVec = QstateVector;
+		// if(QTable.find(data.state) == QTable.end()){
+    	// 	QTable[data.state] = 0;
+    	// }
+    	// double oldQ = QTable[data.state];
+    	// double maxNextQ = CalcMaxNextQ(data.state,data.stateNextVec);
 
-    	double newQ = oldQ + 0.7*(data.reward + 0.1*maxNextQ - oldQ);
-    	QTable[data.state] = newQ;
+    	// double newQ = oldQ + 0.7*(data.reward + 0.1*maxNextQ - oldQ);
+    	// QTable[data.state] = newQ;
 
 		if(QstateVector.size()==1){
 			action = QstateVector[0].id;
