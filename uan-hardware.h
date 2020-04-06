@@ -9,6 +9,7 @@ void serialport1_Recv_monitorPthread_create();
 void timer_counter(int nSignal);
 void TimerInit();
 void PortSend(char* send,int sizecnt);
+void PrintTime(unsigned int time);
 int ListenChanel();
 void WaitDelay(unsigned int waittime);
 unsigned int CountBackoffTime(int backofftime);

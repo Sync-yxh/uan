@@ -134,7 +134,7 @@ bool MAC_DataSend(StatePkt statePkt)
 	arr[3] = statePkt.bandwidth;
 	arr[4] = statePkt.connect;
 	arr[5] = (char)(statePkt.Depth >> 8);
-	arr[6] = (char)(statePkt.Depth & 0x0F);
+	arr[6] = (char)(statePkt.Depth & 0x00FF);
 	sizecnt = 7;
 	PortSend(arr,sizecnt);
 	delete[]arr;

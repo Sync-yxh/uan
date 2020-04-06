@@ -90,9 +90,10 @@ void *serialport1_Send_monitorPthread(void *ptr)
 			writeresult = true;
 			if(writeresult > 0)
 			{
+				PrintTime(SysTimeCnt);
 				cout<<"send success:  ";
 				for(int i=0;i<sendlen;i++)
-					cout<<(unsigned int)sendbuff[i]<<" ";
+					cout<<(unsigned int)(sendbuff[i] & 0x00FF)<<" ";
 				cout<<endl;
 			}
 			SysPortState = RecvState;
@@ -134,9 +135,10 @@ void *serialport1_Recv_monitorPthread(void *ptr)
 				}
 				else
 				{
+					PrintTime(SysTimeCnt);
 					cout<<"recv success:  ";
 					for(int i=0;i<readlen;i++)
-						cout<<(unsigned int)readbuff[i]<<" ";
+						cout<<(unsigned int)(readbuff[i] & 0x00FF)<<" ";
 					cout<<endl;
 
 					list<char> macrecv(readbuff,readbuff+readlen);
@@ -164,7 +166,7 @@ void PrintTime(unsigned int time)
 	int minite = time / 60;
 	int hour = minite / 60;
 	minite = minite % 60;
-	cout << "Time: "<<hour<<" hour "<<minite<<" min "<<second<<" sec "<<endl;
+	cout << "Time: "<<hour<<" hour "<<minite<<" min "<<second<<" sec   ";
 }
 
 void timer_counter(int nSignal)	//定时器计数函数
@@ -172,9 +174,8 @@ void timer_counter(int nSignal)	//定时器计数函数
 	pthread_mutex_lock(&mut);
 	SysTimeCnt++;
 	pthread_mutex_unlock(&mut);
-	PrintTime(SysTimeCnt);
 
-	if(SysTimeCnt % 2 == 0){
+	if(SysTimeCnt % 5 == 0){
 		SendAppData();
 	}
 	if(SysTimeCnt % 300 == 0){

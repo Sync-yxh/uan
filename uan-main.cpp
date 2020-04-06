@@ -16,7 +16,7 @@ int main() {
 	MAC_RecvControlThread_create();
 	Route_SendControlThread_create();
 	Route_RecvControlThread_create();
-	
+
 	TimerInit();
 	InitSys();
 

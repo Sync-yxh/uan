@@ -12,7 +12,7 @@ using namespace std;
 
 int FindRouting(char& next)
 {
-	int FindResult = 0;
+	int FindResult = 1;
 	next = char(255);
 	return FindResult;
 }
@@ -32,6 +32,7 @@ bool Route_DataSend(RouteData data)
 	pkt.srcID = data.srcID;
 	pkt.relayID = m_ID;
 	pkt.dstID = nextID;
+	pkt.data = data.data;
 	pthread_mutex_lock(&mut);
     MACSendBuff.push_back(pkt);
     RouteSendBuff.pop_front();
