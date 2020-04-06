@@ -176,14 +176,15 @@ void timer_counter(int nSignal)	//定时器计数函数
 	SysTimeCnt++;
 	pthread_mutex_unlock(&mut);
 
-	if(SysTimeCnt % 5 == 0){
-		SendAppData();
-	}
 	if(SysTimeCnt % 300 == 0){
 		SendAppState();
+		return;
 	}
-	if(SysTimeCnt % 300 == 10){
+	if((SysTimeCnt % 300) == 10){
 		UpdataQ();
+	}
+	if(SysTimeCnt % 10 == 0){
+		SendAppData();
 	}
 	if(SysTimeCnt >= 60000){
 		SysTimeCnt = 0;
