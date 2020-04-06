@@ -64,4 +64,23 @@ public:
 	AppData data;
 };
 
+class State
+{
+public:
+	int id;
+    int connect;
+    int bandwidth;
+
+	bool operator < ( const State &s ) const; 
+}
+
+class Step
+{
+public:
+    State state;
+    bool action;
+    std::vector<State> stateNextVec;
+    double reward;
+};
+
 #endif /* UAN_CLASS_H_ */

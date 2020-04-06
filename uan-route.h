@@ -10,6 +10,8 @@ void* Route_RecvControlThread(void* ptr);
 void Route_SendControlThread_create();
 void Route_RecvControlThread_create();
 
+void UpdataQ();
+
 RouteData Route_Package(AppData ad);
 
 #endif /* UAN_ROUTE_H_ */

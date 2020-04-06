@@ -24,6 +24,7 @@
 #include "uan-variable.h"
 #include "uan-mac.h"
 #include "uan-app.h"
+#include "uan-route.h"
 
 using namespace std;
 
@@ -180,6 +181,9 @@ void timer_counter(int nSignal)	//定时器计数函数
 	}
 	if(SysTimeCnt % 300 == 0){
 		SendAppState();
+	}
+	if(SysTimeCnt % 300 == 10){
+		UpdataQ();
 	}
 	if(SysTimeCnt >= 60000){
 		SysTimeCnt = 0;

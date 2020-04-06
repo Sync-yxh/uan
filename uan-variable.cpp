@@ -33,3 +33,5 @@ int serial_fd1;
 int readlen = 0;
 int sendlen = 0;
 
+int QLStage = 1;
+

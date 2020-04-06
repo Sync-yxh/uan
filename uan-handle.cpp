@@ -50,6 +50,11 @@ void HandleRou(char input[])
 		}
 		else{
 			ParentIDBuff.push_back(statePkt.srcID);
+			State S;
+			S.id = statePkt.srcID;
+			S.bandwidth = statePkt.bandwidth;
+			S.connect = statePkt.connect;
+			QstateVector.push_back(S);
 		}
 	}break;
 	default:

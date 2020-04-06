@@ -45,6 +45,7 @@ void SendAppState()
 	ToMAC(pkt);
 	ChildIDBuff.clear();
 	ParentIDBuff.clear();
+	QstateVector.clear();
 	pthread_mutex_lock(&mut);
 	MACWaitSend = 0;
 	MACSendBuff.clear();

@@ -10,11 +10,85 @@
 
 using namespace std;
 
+State OldState;
+char action = 255;
+
 int FindRouting(char& next)
 {
 	int FindResult = 1;
-	next = char(255);
+	next = action;
 	return FindResult;
+}
+
+double CalcMaxNextQ(State nodeState,vector<State> stateVec)
+{
+    double maxQ = INT_MIN;
+    bool found = false;
+    for(vector<State>::iterator iter = stateVec.begin(); iter != stateVec.end(); iter++)
+    {
+        State one = *iter;
+        if(one.id == nodeState.id){
+            maxQ = QTable[one];
+            found = true;
+        }
+    }
+    if(found == false || maxQ == INT_MIN){
+        maxQ = 0;
+    }
+
+    return maxQ;
+}
+
+void UpdataQ()
+{
+	if(QLStage == 1)
+	{
+		OldState = QstateVector[0];
+		action = OldState.id;
+		QLStage = 2;
+	}	
+	else if(QLStage == 2)
+	{
+		Step data;
+		data.state = OldState;
+		data.reward = 1;
+		data.stateNextVec = QstateVector;
+		if(QTable.find(data.state) == QTable.end()){
+    		QTable[data.state] = 0;
+    	}
+    	double oldQ = QTable[data.state];
+    	double maxNextQ = CalcMaxNextQ(data.state,data.stateNextVec);
+
+    	double newQ = oldQ + alpha*(data.reward + gamma*maxNextQ - oldQ);
+    	QTable[data.state] = newQ;
+
+		if(QstateVec.size()==1){
+			action = QstateVec[0].id;
+		}
+		else if(QstateVec.size()==0){
+			action = char(255);
+		}
+		else{
+			double maxQ1 = INT_MIN;
+			State maxS1;
+			for(std::vector<State>::iterator iter = QstateVec.begin(); iter != QstateVec.end(); iter++)
+			{
+				State one = *iter;
+				if(QTable.find(one) != QTable.end()){
+					if(QTable[one] >= maxQ1){
+						maxQ1 = QTable[one];
+						maxS1 = one;
+					}
+				}
+			}
+			if(maxQ1 > INT_MIN){
+				action = maxS1.id;
+			}
+			else{
+				action = char(255);
+			}
+		}
+	}
 }
 
 bool Route_DataSend(RouteData data)

@@ -41,6 +41,9 @@ extern list<RouteData> RouteRecvBuff;              //路由接收缓存
 extern list<RouteData> RouteSendBuff;              //路由发送缓存
 extern list<AppData> DataRecvBuff;
 
+extern vector<State>  QstateVector;             //状态组
+extern map<State, double> QTable;               //Q值表
+
 extern vector<char> ParentIDBuff;
 extern vector<char> ChildIDBuff;
 
@@ -52,5 +55,7 @@ extern int readlen;
 extern int sendlen;
 
 extern int Backtime;
+
+extern int QLStage;
 
 #endif /* UAN_VARIABLE_H_ */
