@@ -28,7 +28,7 @@ void HandleRou(char input[])
 		InitPkt initpkt;                    // 为了代码可读性，先复原报文，再建立路由
 		initpkt.seqNum =  input[1];
 		initpkt.srcID = input[2];
-		initpkt.Depth = uint16(input[3] << 8 & input[4]);
+		initpkt.Depth = uint16((input[3] << 8) + input[4]);
 
 		if(m_Depth < initpkt.Depth){
 			ChildIDBuff.push_back(initpkt.srcID);

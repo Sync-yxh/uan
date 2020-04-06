@@ -44,11 +44,25 @@ void UpdataQ()
 {
 	if(QLStage == 1)
 	{
-		OldState = QstateVector[0];
-		action = OldState.id;
-		QLStage = 2;
-	}	
-	else if(QLStage == 2)
+		if(ParentIDBuff.empty()){
+			action = 255;
+		}
+		else{
+			action = ParentIDBuff[0];
+			QLStage = 2;
+		}
+	}
+	else if(QLStage == 2){
+		if(QstateVector.empty()){
+			action = 255;
+		}
+		else{
+			OldState = QstateVector[0];
+			action = OldState.id;
+			QLStage = 3;
+		}
+	}
+	else if(QLStage == 3)
 	{
 		Step data;
 		data.state = OldState;

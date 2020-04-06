@@ -138,8 +138,10 @@ void *serialport1_Recv_monitorPthread(void *ptr)
 				{
 					PrintTime(SysTimeCnt);
 					cout<<"recv success:  ";
-					for(int i=0;i<readlen;i++)
+					for(int i=0;i<readlen;i++){
+						readbuff[i] -= 48;
 						cout<<(unsigned int)(readbuff[i] & 0x00FF)<<" ";
+					}
 					cout<<endl;
 
 					list<char> macrecv(readbuff,readbuff+readlen);
@@ -169,6 +171,7 @@ void PrintTime(unsigned int time)
 	minite = minite % 60;
 	cout << "Time: "<<hour<<" hour "<<minite<<" min "<<second<<" sec   ";
 }
+int flag = 0;
 
 void timer_counter(int nSignal)	//定时器计数函数
 {
@@ -178,12 +181,14 @@ void timer_counter(int nSignal)	//定时器计数函数
 
 	if(SysTimeCnt % 300 == 0){
 		SendAppState();
+		flag = 0;
 		return;
 	}
-	if((SysTimeCnt % 300) == 10){
+	if((SysTimeCnt % 300) == 9){
 		UpdataQ();
+		flag = 1;
 	}
-	if(SysTimeCnt % 10 == 0){
+	if(SysTimeCnt % 5 == 0 && flag ==1){
 		SendAppData();
 	}
 	if(SysTimeCnt >= 60000){
