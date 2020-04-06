@@ -39,7 +39,7 @@ extern list< list<char> > MACRecvBuff;               //MAC接收缓存
 extern list<DataPkt> MACSendBuff;                  //MAC发送缓存
 extern list<RouteData> RouteRecvBuff;              //路由接收缓存
 extern list<RouteData> RouteSendBuff;              //路由发送缓存
-extern list<AppData> DataBuff;
+extern list<AppData> DataRecvBuff;
 
 extern vector<char> ParentIDBuff;
 extern vector<char> ChildIDBuff;

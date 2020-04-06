@@ -14,14 +14,14 @@ int MACWaitSend = 0;       //MAC等待发送标志
 int RouteWaitSend = 0;    //路由等待发送标志
 int RouteWaitRecv = 0;     //路由等待接收标志
 
-vector<MACResult> MACResultArray;         //MAC发送结果记录数组
-
-list< list<char> > MACRecvBuff;               //MAC接收缓存
+list<list<char>> MACRecvBuff;             //MAC接收缓存
 list<DataPkt> MACSendBuff;                  //MAC发送缓存
 list<RouteData> RouteRecvBuff;              //路由接收缓存
 list<RouteData> RouteSendBuff;              //路由发送缓存
-list<AppData> DataBuff;
+list<AppData> DataRecvBuff;                 //数据接收缓存
 
+vector<State>  QstateVector;             //状态组
+map<State, double> QTable;               //Q值表
 
 vector<char> ParentIDBuff;
 vector<char> ChildIDBuff;
