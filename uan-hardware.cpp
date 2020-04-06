@@ -188,9 +188,15 @@ void timer_counter(int nSignal)	//定时器计数函数
 		UpdataQ();
 		flag = 1;
 	}
-	if(SysTimeCnt % 5 == 0 && flag ==1){
-		SendAppData();
+	if(	SysTimeCnt == 10){
+		SysTimeCnt = 295;
 	}
+	if(SysTimeCnt == 310){
+		SysTimeCnt = 595;
+	}
+//	if(SysTimeCnt % 5 == 0 && flag ==1){
+//		SendAppData();
+//	}
 	if(SysTimeCnt >= 60000){
 		SysTimeCnt = 0;
 	}
